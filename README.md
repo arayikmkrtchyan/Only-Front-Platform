@@ -19,3 +19,17 @@
  ```
  
 ## Folder structure
+
+ ```
+ ├── node_modules     // this folder generated on install time - npm install
+ ├── bower_components // this folder generated on install time - bower install
+ ├── js               // this folder generated on build time   - grunt
+ ├── ng
+ |   ├── factory
+ |   └── directives
+ ├── .gitignore
+ ├── bower.json
+ ├── package.json
+ ├── Gruntfile.js
+ └── README.md
+ ```
