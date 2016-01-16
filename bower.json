@@ -1,0 +1,8 @@
+{
+  "name": "Only Front Platform",
+  "dependencies": {
+    "jquery": "*",
+    "angular": "*",
+    "angular-route": "*"
+  }
+}

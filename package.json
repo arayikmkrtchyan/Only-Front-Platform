@@ -1,0 +1,13 @@
+{
+  "name": "Only Front Platform",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gruntfile.js",
+  "author": "",
+  "dependencies": {
+    "grunt": "*",
+    "grunt-cli": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-uglify": "*"
+  }
+}

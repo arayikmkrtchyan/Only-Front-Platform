@@ -9,3 +9,6 @@ bower_components/
 
 # npm
 node_modules/
+
+# build folder
+js/
