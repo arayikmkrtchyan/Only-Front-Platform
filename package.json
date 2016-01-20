@@ -1,5 +1,5 @@
 {
-  "name": "Only Front Platform",
+  "name": "only-front-platform",
   "version": "1.0.0",
   "description": "",
   "main": "Gruntfile.js",
@@ -8,6 +8,9 @@
     "grunt": "*",
     "grunt-cli": "*",
     "grunt-contrib-concat": "*",
-    "grunt-contrib-uglify": "*"
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-watch": "*"
   }
 }
