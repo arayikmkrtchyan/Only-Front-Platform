@@ -1,5 +1,5 @@
 {
-  "name": "Only Front Platform",
+  "name": "only-front-platform",
   "dependencies": {
     "jquery": "*",
     "angular": "*",
