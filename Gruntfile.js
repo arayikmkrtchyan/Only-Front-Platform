@@ -14,9 +14,11 @@ module.exports = function (grunt) {
             {
               src: [
                 'ng/app.js'
+                , 'ng/route.js'
                 , 'projects/' + project + '/route.js'
                 , 'ng/factory/PubSub.js'
                 , 'ng/factory/Connector.js'
+                , 'ng/interceptors/**.js'
                 , 'ng/directives/**.js'
                 , 'ng/services/**.js'
                 , 'ng/controllers/**.js'
