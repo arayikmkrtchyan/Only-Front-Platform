@@ -17,7 +17,7 @@ Connector.prototype.send = function (request) {
   var name, params, promise;
   params = angular.merge(angular.copy(this.req), request);
   name = params.url;
-  params.url = 'rest/' + this.serviceName + '/' + name;
+  params.url = 'rest/' + this.serviceName + '/' + name + '.json';
 
   promise = this.$http(params);
 
