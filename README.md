@@ -7,42 +7,71 @@
  - git (https://git-scm.com/)
  - node js server with npm (http://nodejs.org/)
  - bower (http://bower.io/)    `$ npm i -g bower`
- - grunt (http://gruntjs.com/) `$ npm i -g grunt` and `$ npm i -g grunt-cli` 
- 
+ - gulp (http://gulpjs.com/) `$ npm i -g gulp`
+
+### Change config for your project
+
+ Go to `<root_dir>/gulp/` and edit `config.js` this is a node module
+ Change projectName variable and set your project directory name
+ ex: `var projectName = 'demo';`
+
 ### Install command in terminal
  
  ```
  $ cd <root_dir>
  $ npm install
  $ bower install
- $ grunt deploy:<project_name>
+ $ gulp deploy
  ```
  
 ## Folder structure
 
  ```
- ├── package.json       // npm config
- ├── bower.json         // bower config
- ├── Gruntfile.js       // grunt config
- ├── bower_components   // generated on install time - bower install
- ├── node_modules       // generated on install time - npm install
- ├── js                 // generated on build time   - grunt deploy:<project_name>
- │   ├── app.js
- │   └── app.min.js
- ├── ng
- │   ├── app.js
- │   ├── controllers
- │   ├── directives
- │   ├── factory
- │   ├── services
- │   └── templates
+ .
+ ├── bower_components
+ │   ├── angular
+ │   ├── angular-route
+ │   ├── ...
+ │   └── jquery
+ ├── bower.json
+ ├── gulp
+ │   └── config.js
+ ├── gulpfile.js
+ ├── node_modules
+ ├── package.json
  ├── projects
- │   └── demo
- │       ├── route.js
- │       ├── controllers
- │       ├── services
- │       ├── directives
- │       └── templates
- ├── index.html
- └── templates          // generated on build time   - grunt deploy:<project_name>
+ │   └── [ProjectName]
+ │       ├── css
+ │       ├── html
+ │       ├── images
+ │       ├── js
+ │       │   ├── route.js
+ │       │   ├── interceptors
+ │       │   ├── directives
+ │       │   ├── services
+ │       │   └── controllers
+ │       ├── rest
+ │       └── index.html
+ ├── public
+ │   ├── html
+ │   ├── images
+ │   ├── js
+ │   ├── rest
+ │   └── index.html
+ ├── README.md
+ └── src
+     ├── css
+     ├── html
+     ├── images
+     ├── js
+     │   ├── app.js
+     │   ├── route.js
+     │   ├── interceptors
+     │   ├── factory
+     │   ├── directives
+     │   ├── services
+     │   └── controllers
+     ├── rest
+     └── index.html
+
  ```
