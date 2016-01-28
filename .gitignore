@@ -10,8 +10,5 @@ bower_components/
 # npm
 node_modules/
 
-# build folder
-js/
-
-# build templates
-templates/
+# build public folder
+public/
