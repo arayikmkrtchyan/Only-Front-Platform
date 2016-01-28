@@ -21,6 +21,8 @@
     "gulp-rename": "*",
     "gulp-concat-css": "*",
     "gulp-minify-css": "*",
+    "gulp-preprocess": "*",
+    "gulp-inject": "*",
     "gulp-htmlmin": "*"
   },
   "private": true
