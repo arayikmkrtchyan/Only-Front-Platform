@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html ng-controller="RootController">
+<head>
+    <title ng-bind="title"></title>
+
+
+    <style>
+        .preloading {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            color: #595959;
+        }
+
+        /* The animation code */
+        @keyframes dot {
+            0% {
+                opacity: 0.3
+            }
+            50% {
+                opacity: 1
+            }
+            100% {
+                opacity: 0.3
+            }
+        }
+
+        /* The element to apply the animation to */
+        .dot-1, .dot-2, .dot-3, .dot-4, .dot-5, .dot-6, .dot-7, .dot-8, .dot-9, .dot-10 {
+            opacity: 0.3;
+            animation-name: dot;
+            animation-duration: 999ms;
+            animation-iteration-count: infinite;
+            -webkit-animation-name: dot;
+            -webkit-animation-duration: 999ms;
+            -webkit-animation-iteration-count: infinite;
+        }
+
+        .dot-1 {
+            animation-delay: 0ms;
+            -webkit-animation-delay: 0ms;
+        }
+
+        .dot-2 {
+            animation-delay: 111ms;
+            -webkit-animation-delay: 111ms;
+        }
+
+        .dot-3 {
+            animation-delay: 222ms;
+            -webkit-animation-delay: 222ms;
+        }
+
+        .dot-4 {
+            animation-delay: 333ms;
+            -webkit-animation-delay: 333ms;
+        }
+
+        .dot-5 {
+            animation-delay: 444ms;
+            -webkit-animation-delay: 444ms;
+        }
+
+        .dot-6 {
+            animation-delay: 555ms;
+            -webkit-animation-delay: 555ms;
+        }
+
+        .dot-7 {
+            animation-delay: 666ms;
+            -webkit-animation-delay: 666ms;
+        }
+
+        .dot-8 {
+            animation-delay: 777ms;
+            -webkit-animation-delay: 777ms;
+        }
+
+        .dot-9 {
+            animation-delay: 888ms;
+            -webkit-animation-delay: 888ms;
+        }
+
+        .dot-10 {
+            animation-delay: 999ms;
+            -webkit-animation-delay: 999ms;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+
+<div ng-include="'html/content.html'" ng-show="completed"></div>
+<div style="text-align: center; margin-top: 25%" ng-hide="completed">
+    <h1 class="preloading">
+        <span class="dot-1">L</span>
+        <span class="dot-2">o</span>
+        <span class="dot-3">a</span>
+        <span class="dot-4">d</span>
+        <span class="dot-5">i</span>
+        <span class="dot-6">n</span>
+        <span class="dot-7">g</span>
+        <span class="dot-8">.</span>
+        <span class="dot-9">.</span>
+        <span class="dot-10">.</span>
+
+        <!--
+        <span class="dot-4">.</span>
+        <span class="dot-5">.</span>
+        <span class="dot-6">.</span>
+        <span class="dot-7">.</span>
+        <span class="dot-8">.</span>
+        <span class="dot-9">.</span>
+        <span class="dot-10">.</span>
+        -->
+    </h1>
+</div>
+
+
+<script defer src="js/vendor.min.js"></script>
+<script defer src="js/app.min.js"></script>
+
+</body>
+</html>
