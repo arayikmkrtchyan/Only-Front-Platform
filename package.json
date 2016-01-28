@@ -1,16 +1,27 @@
 {
   "name": "only-front-platform",
   "version": "1.0.0",
-  "description": "",
-  "main": "Gruntfile.js",
-  "author": "",
-  "dependencies": {
-    "grunt": "*",
-    "grunt-cli": "*",
-    "grunt-contrib-concat": "*",
-    "grunt-contrib-uglify": "*",
-    "grunt-contrib-clean": "*",
-    "grunt-contrib-copy": "*",
-    "grunt-contrib-watch": "*"
-  }
+  "description": "Only front platform is a web platform that can be opened and modified without backend supported",
+  "author": "Ashto Mnatsakanyan <mnatsakanyan.ashot@gmail.com>",
+  "contributors": [
+    {}
+  ],
+  "main": "gulpfile.js",
+  "scripts": {
+    "deploy": "gulp deploy",
+    "develop": "gulp develop",
+    "watch": "gulp watch"
+  },
+  "devDependencies": {
+    "del": "*",
+    "gulp": "*",
+    "gulp-cli": "*",
+    "gulp-concat": "*",
+    "gulp-uglify": "*",
+    "gulp-rename": "*",
+    "gulp-concat-css": "*",
+    "gulp-minify-css": "*",
+    "gulp-htmlmin": "*"
+  },
+  "private": true
 }
