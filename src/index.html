@@ -3,7 +3,6 @@
 <head>
     <title ng-bind="title"></title>
 
-
     <style>
         .preloading {
             font-family: Arial, Helvetica, sans-serif;
@@ -87,12 +86,20 @@
 
 
     </style>
+
+    <!-- @ifdef DEBUG -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- @endif -->
+    <!-- @if ENV='production' -->
+    <script defer src="css/vendor.min.css"></script>
+    <script defer src="css/style.min.js"></script>
+    <!-- @endif -->
 </head>
 
 <body>
-
-
 <div ng-include="'html/content.html'" ng-show="completed"></div>
+
 <div style="text-align: center; margin-top: 25%" ng-hide="completed">
     <h1 class="preloading">
         <span class="dot-1">L</span>
@@ -105,22 +112,20 @@
         <span class="dot-8">.</span>
         <span class="dot-9">.</span>
         <span class="dot-10">.</span>
-
-        <!--
-        <span class="dot-4">.</span>
-        <span class="dot-5">.</span>
-        <span class="dot-6">.</span>
-        <span class="dot-7">.</span>
-        <span class="dot-8">.</span>
-        <span class="dot-9">.</span>
-        <span class="dot-10">.</span>
-        -->
     </h1>
 </div>
 
 
+<!-- @ifdef DEBUG -->
+<!-- inject:js -->
+<!-- endinject -->
+<!-- @endif -->
+
+<!-- @if ENV='production' -->
 <script defer src="js/vendor.min.js"></script>
 <script defer src="js/app.min.js"></script>
+<!-- @endif -->
+
 
 </body>
 </html>
