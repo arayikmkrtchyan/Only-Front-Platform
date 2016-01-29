@@ -51,4 +51,8 @@ module.exports = {
     img  : './public/images/',
     rest : './public/rest/',
   },
+  context: {
+    ENV: 'production',
+    DEBUG: false,
+  }
 };
