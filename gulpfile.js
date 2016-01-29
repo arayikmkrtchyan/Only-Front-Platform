@@ -58,7 +58,6 @@ job_vendor_css = function() {
 /** Images copy to public */
 job_images = function() {
   gulp.src([config.src.imgFiles, config.project.imgFiles])
-    .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest(config.public.img))
   ;
 },
@@ -111,7 +110,7 @@ gulp.task('deploy', function () {
   job_vendor_js();
   job_style_css();
   job_vendor_css();
-  //job_images();
+  job_images();
   job_html();
   job_html_index();
   job_rest();
