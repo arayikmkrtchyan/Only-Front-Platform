@@ -1,14 +1,16 @@
-var gulp    = require('gulp'),
-  config    = require('./gulp/config'),
-  del       = require('del'),
-  concat    = require('gulp-concat'),
-  uglify    = require('gulp-uglify'),
-  rename    = require("gulp-rename"),
-  concatCss = require('gulp-concat-css'),
-  minifyCss = require('gulp-minify-css'),
-  htmlmin   = require('gulp-htmlmin'),
-  watch     = require('gulp-watch');
+'use strict';
 
+var gulp     = require('gulp'),
+  config     = require('./gulp/config'),
+  del        = require('del'),
+  concat     = require('gulp-concat'),
+  uglify     = require('gulp-uglify'),
+  rename     = require("gulp-rename"),
+  concatCss  = require('gulp-concat-css'),
+  minifyCss  = require('gulp-minify-css'),
+  htmlmin    = require('gulp-htmlmin'),
+  preprocess = require('gulp-preprocess'),
+  inject     = require('gulp-inject');
 
 // Implements job
 var
@@ -71,10 +73,22 @@ job_html = function() {
 
 /** HTML index copy to public and compress */
 job_html_index = function() {
-  gulp.src([config.src.htmlIndexFile, config.project.htmlIndexFile])
-    .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest(config.public.root))
-  ;
+
+  var target = gulp.src(config.src.htmlIndexFile);
+
+  if(config.context.DEBUG) {
+    var files = [];
+    files = files.concat(config.src.jsFiles);
+    files = files.concat(config.project.jsFiles);
+    files.push(config.src.cssFiles);
+    files.push(config.project.cssFiles);
+    var sources = gulp.src(files, {read: false});
+    target.pipe(inject(sources));
+  } else {
+    target.pipe(htmlmin({collapseWhitespace: true}))
+  }
+  target.pipe(preprocess({context : config.context}));
+  target.pipe(gulp.dest(config.public.root));
 },
 
 /** REST json files copy to public rest folder */
@@ -97,7 +111,7 @@ gulp.task('deploy', function () {
   job_vendor_js();
   job_style_css();
   job_vendor_css();
-  job_images();
+  //job_images();
   job_html();
   job_html_index();
   job_rest();
@@ -114,3 +128,20 @@ gulp.task('watch', function () {
   gulp.watch([config.src.restFiles, config.project.restFiles],         job_rest       );
 
 });
+
+gulp.task('develop', function () {
+  config.context.DEBUG = true;
+  config.context.ENV = 'development';
+  job_html_index();
+
+  var files = [];
+  files = files.concat(config.src.jsFiles);
+  files = files.concat(config.project.jsFiles);
+  files.push(config.src.cssFiles);
+  files.push(config.project.cssFiles);
+  files.push(config.src.htmlIndexFile);
+  files.push(config.project.htmlIndexFile);
+  return gulp.watch(files, job_html_index);
+
+});
+
