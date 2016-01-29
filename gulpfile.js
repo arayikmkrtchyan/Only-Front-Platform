@@ -7,7 +7,7 @@ var gulp     = require('gulp'),
   uglify     = require('gulp-uglify'),
   rename     = require("gulp-rename"),
   concatCss  = require('gulp-concat-css'),
-  minifyCss  = require('gulp-minify-css'),
+  cssnano    = require('gulp-cssnano'),
   htmlmin    = require('gulp-htmlmin'),
   preprocess = require('gulp-preprocess'),
   inject     = require('gulp-inject');
@@ -38,7 +38,7 @@ job_style_css = function() {
   gulp.src([config.src.cssFiles, config.project.cssFiles])
     .pipe(concatCss('style.css'))
     .pipe(gulp.dest(config.public.css))
-    .pipe(minifyCss())
+    .pipe(cssnano())
     .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest(config.public.css))
   ;
@@ -49,7 +49,7 @@ job_vendor_css = function() {
   gulp.src(config.src.cssVendor.concat(config.project.cssVendor))
     .pipe(concatCss('vendor.css'))
     .pipe(gulp.dest(config.public.css))
-    .pipe(minifyCss())
+    .pipe(cssnano())
     .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest(config.public.css))
   ;
@@ -143,4 +143,3 @@ gulp.task('develop', function () {
   return gulp.watch(files, job_html_index);
 
 });
-
