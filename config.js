@@ -21,6 +21,9 @@ module.exports = {
       './bower_components/angular-route/angular-route.min.js',
       './bower_components/jquery/dist/jquery.min.js'
     ],
+    jsTestFiles: [
+      './src/tests/unit/**/*.js',
+    ],
     cssFiles: './src/css/**/*.css',
     cssVendor: [],
     htmlFiles: './src/html/**/*.html',
@@ -36,6 +39,7 @@ module.exports = {
       './projects/' + projectName + '/js/controllers/**/*.js',
     ],
     jsVendor: [],
+    jsTestFiles: [],
     cssFiles: './projects/' + projectName + '/css/**/*.css',
     cssVendor: [],
     htmlFiles: './projects/' + projectName + '/html/**/*.html',
@@ -52,7 +56,7 @@ module.exports = {
     rest : './public/rest/',
   },
   context: {
-    ENV: 'production',
-    DEBUG: false,
+    ENV: 'development',  // development | production
+    DEBUG: true,
   }
 };
