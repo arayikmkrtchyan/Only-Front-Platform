@@ -8,10 +8,11 @@ PubSub.prototype = {
 
   publish: function (event, data) {
     if (!this.subscribers[event])
-      return;
+      return false;
     this.subscribers[event].forEach(function (subscriber) {
       subscriber(data);
     });
+    return true;
   },
 
   subscribe: function (event, callback) {
