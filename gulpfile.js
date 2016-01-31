@@ -1,7 +1,7 @@
 'use strict';
 
 var gulp     = require('gulp'),
-  config     = require('./gulp/config'),
+  config     = require('./config'),
   del        = require('del'),
   concat     = require('gulp-concat'),
   uglify     = require('gulp-uglify'),
@@ -103,6 +103,9 @@ job_rest = function() {
 // Register gulp tasks
 
 gulp.task('deploy', function () {
+  config.context.DEBUG = false;
+  config.context.ENV = 'production';
+
   // delete all public dir
   del(config.public.root);
 
