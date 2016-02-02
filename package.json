@@ -6,7 +6,6 @@
   "contributors": [
     {}
   ],
-  "main": "gulpfile.js",
   "scripts": {
     "deploy": "gulp deploy",
     "develop": "gulp develop",
@@ -22,6 +21,7 @@
     "gulp-inject": "^3.0.0",
     "gulp-preprocess": "^2.0.0",
     "gulp-rename": "^1.2.2",
+    "gulp-sequence": "^0.4.4",
     "gulp-uglify": "^1.5.1",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.19",
