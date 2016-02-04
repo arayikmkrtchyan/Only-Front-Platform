@@ -15,7 +15,7 @@ var gulp     = require("gulp"),
 
 // Sub task list
 gulp.task("clear-public", function(){
-  del(config.public.root);
+  del([config.public.root+"*", "!"+config.public.root+".gitignore"]);
 });
 
 gulp.task("build-app-js", function(){
@@ -69,20 +69,23 @@ gulp.task("build-html", function(){
 });
 
 gulp.task("build-index", function(){
-  var target = gulp.src(config.src.htmlIndexFile);
+  var target = gulp.src([config.src.htmlIndexFile, config.project.htmlIndexFile]);
 
-  if(config.context.DEBUG) {
+  if (config.context.DEBUG) {
     var files = [];
+    files = files.concat(config.src.jsVendor);
+    files = files.concat(config.project.jsVendor);
     files = files.concat(config.src.jsFiles);
     files = files.concat(config.project.jsFiles);
-    //files.push(config.src.cssFiles);
-    //files.push(config.project.cssFiles);
-    var sources = gulp.src(files);
-    target.pipe(inject(sources, {relative: true}));
+    files = files.concat(config.src.cssVendor);
+    files = files.concat(config.project.cssVendor);
+    files.push(config.src.cssFiles);
+    files.push(config.project.cssFiles);
+    target = target.pipe(inject(gulp.src(files, {read: false}), {addRootSlash: false, addPrefix: ".." }));
   } else {
-    target.pipe(htmlmin({collapseWhitespace: true}))
+    target = target.pipe(htmlmin({collapseWhitespace: true}))
   }
-  //target.pipe(preprocess({context : config.context}));
+  target = target.pipe(preprocess({context: config.context}));
   return target.pipe(gulp.dest(config.public.root));
 });
 
@@ -95,7 +98,7 @@ gulp.task("build-rest", function(){
 
 // Register gulp tasks
 
-gulp.task("deploy", function (cb) {
+gulp.task("build", function (cb) {
   config.context.DEBUG = false;
   config.context.ENV = "production";
 
@@ -117,12 +120,12 @@ gulp.task("deploy", function (cb) {
 
 gulp.task("watch", function () {
 
-  gulp.watch(config.src.jsFiles.concat(config.project.jsFiles),        "build-app-js");
-  gulp.watch([config.src.cssFiles, config.project.cssFiles],           "build-style-css");
-  gulp.watch([config.src.imgFiles, config.project.imgFiles],           "copy-images");
-  gulp.watch([config.src.htmlFiles, config.project.htmlFiles],         "build-html");
-  gulp.watch([config.src.htmlIndexFile, config.project.htmlIndexFile], "build-index");
-  gulp.watch([config.src.restFiles, config.project.restFiles],         "build-rest");
+  gulp.watch(config.src.jsFiles.concat(config.project.jsFiles),        ["build-app-js"]);
+  gulp.watch([config.src.cssFiles, config.project.cssFiles],           ["build-style-css"]);
+  gulp.watch([config.src.imgFiles, config.project.imgFiles],           ["copy-images"]);
+  gulp.watch([config.src.htmlFiles, config.project.htmlFiles],         ["build-html"]);
+  gulp.watch([config.src.htmlIndexFile, config.project.htmlIndexFile], ["build-index"]);
+  gulp.watch([config.src.restFiles, config.project.restFiles],         ["build-rest"]);
 
 });
 
@@ -130,7 +133,7 @@ gulp.task("develop", function () {
   config.context.DEBUG = true;
   config.context.ENV = "development";
 
-  gulp.run("build-index");
+
 
   var files = [];
   files = files.concat(config.src.jsFiles);
@@ -139,6 +142,8 @@ gulp.task("develop", function () {
   files.push(config.project.cssFiles);
   files.push(config.src.htmlIndexFile);
   files.push(config.project.htmlIndexFile);
-  return gulp.watch(files, "build-index");
+  gulp.watch(files, ["build-index"]);
+
+  return gulp.start("build-index");
 
 });

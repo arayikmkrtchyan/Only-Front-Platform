@@ -7,7 +7,7 @@
     {}
   ],
   "scripts": {
-    "deploy": "gulp deploy",
+    "build": "gulp build",
     "develop": "gulp develop",
     "watch": "gulp watch"
   },
