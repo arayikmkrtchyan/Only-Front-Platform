@@ -6,17 +6,7 @@ Route.role = "Guest";
 
 Route.ng = function (template, controller, roles) {
 
-  return {
-    templateUrl: function () {
-      var template = this.getOriginal().template;
-      if (template) {
-        template = "html/" + template;
-      }
-      return template;
-    },
-    controller: function () {
-      return this.getOriginal().controller;
-    },
+  var obj = {
     getOriginal: function () {
       var obj = this;
       if (this.roles.length && this.roles.indexOf(Route.role) == -1) {
@@ -26,9 +16,9 @@ Route.ng = function (template, controller, roles) {
           obj = Route.getFromRoutesList("access-denied");
         }
       }
-      if (!$route.current) {
-        obj = Route.getFromRoutesList("error-404");
-      }
+      //if (!$route.current) {
+      //  obj = Route.getFromRoutesList("error-404");
+     // }
       if (obj && obj.original) {
         return obj.original;
       }
@@ -43,6 +33,27 @@ Route.ng = function (template, controller, roles) {
     },
     roles: roles
   };
+
+  obj.templateUrl = (function (that) {
+    return function () {
+      console.log(that.original.template);
+      var template = that.getOriginal().template;
+      if (template) {
+        template = "html/" + template;
+      }
+      return template;
+    }
+  })(obj);
+
+  obj.controller = (function (that) {
+    return function () {
+      console.log(that.getOriginal().controller);
+      return that.getOriginal().controller;
+    }
+
+  })(obj);
+
+  return obj;
 
 };
 
