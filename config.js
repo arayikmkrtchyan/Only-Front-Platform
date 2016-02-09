@@ -9,6 +9,7 @@ module.exports = {
       './src/js/app.js',
       './src/js/route.js',
       './projects/' + projectName + '/js/route.js',
+      './src/js/factory/Route.js',
       './src/js/factory/PubSub.js',
       './src/js/factory/Connector.js',
       './src/js/interceptors/**/*.js',
