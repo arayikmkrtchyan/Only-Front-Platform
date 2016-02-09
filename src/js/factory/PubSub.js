@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 function PubSub() {
 }
@@ -20,4 +20,5 @@ PubSub.prototype = {
       this.subscribers[event] = [];
     this.subscribers[event].push(callback);
   }
+
 };

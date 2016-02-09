@@ -8,6 +8,7 @@ function RootController($rootScope, UserService) {
   UserService.subscribe('get-user-data.success', function(data){
     $rootScope.userData = data;
     $rootScope.completed = true;
+    Route.role = data.role;
   });
 
   UserService.getUserData();

@@ -1,8 +1,6 @@
 'use strict';
 
-app.controller("DemoController", ['$scope', '$rootScope', '$interval', DemoController]);
-
-function DemoController($scope, $rootScope, $interval) {
+function DemoController($scope, $rootScope) {
 
   //$interval(function () {
   //  if ($rootScope.title.length > 25) {
@@ -15,3 +13,7 @@ function DemoController($scope, $rootScope, $interval) {
   $scope.demoText = "Hello, World!";
 
 }
+
+// register controller
+DemoController.$inject = ['$scope', '$rootScope'];
+app.controller("DemoController", DemoController);
