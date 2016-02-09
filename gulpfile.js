@@ -11,6 +11,7 @@ var gulp     = require("gulp"),
   htmlmin    = require("gulp-htmlmin"),
   preprocess = require("gulp-preprocess"),
   inject     = require("gulp-inject"),
+  changed    = require("gulp-changed"),
   sequence   = require("gulp-sequence");
 
 // Sub task list
@@ -57,6 +58,7 @@ gulp.task("build-vendor-css", function(){
 
 gulp.task("copy-images", function(){
   return gulp.src([config.src.imgFiles, config.project.imgFiles])
+    .pipe(changed(config.public.img))
     .pipe(gulp.dest(config.public.img))
   ;
 });
@@ -98,12 +100,11 @@ gulp.task("build-rest", function(){
 
 // Register gulp tasks
 
-gulp.task("build", function (cb) {
+gulp.task("build", ["clear-public"], function (cb) {
   config.context.DEBUG = false;
   config.context.ENV = "production";
 
   sequence(
-    "clear-public",
     [
       "build-app-js",
       "build-vendor-js",
@@ -133,16 +134,14 @@ gulp.task("develop", function () {
   config.context.DEBUG = true;
   config.context.ENV = "development";
 
-
-
-  var files = [];
-  files = files.concat(config.src.jsFiles);
-  files = files.concat(config.project.jsFiles);
-  files.push(config.src.cssFiles);
-  files.push(config.project.cssFiles);
-  files.push(config.src.htmlIndexFile);
-  files.push(config.project.htmlIndexFile);
-  gulp.watch(files, ["build-index"]);
+  //var files = [];
+  //files = files.concat(config.src.jsFiles);
+  //files = files.concat(config.project.jsFiles);
+  //files.push(config.src.cssFiles);
+  //files.push(config.project.cssFiles);
+  //files.push(config.src.htmlIndexFile);
+  //files.push(config.project.htmlIndexFile);
+  //gulp.watch(files, ["build-index"]);
 
   return gulp.start("build-index");
 
