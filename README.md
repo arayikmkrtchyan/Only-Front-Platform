@@ -21,7 +21,7 @@
  $ cd <root_dir>
  $ npm install
  $ bower install
- $ gulp deploy
+ $ gulp build
  ```
  
 ## Folder structure
