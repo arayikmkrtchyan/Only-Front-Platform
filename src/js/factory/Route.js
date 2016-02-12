@@ -18,7 +18,7 @@ Route.ng = function (template, controller, roles) {
       }
       //if (!$route.current) {
       //  obj = Route.getFromRoutesList("error-404");
-     // }
+      // }
       if (obj && obj.original) {
         return obj.original;
       }
@@ -36,7 +36,6 @@ Route.ng = function (template, controller, roles) {
 
   obj.templateUrl = (function (that) {
     return function () {
-      console.log(that.original.template);
       var template = that.getOriginal().template;
       if (template) {
         template = "html/" + template;
@@ -46,11 +45,14 @@ Route.ng = function (template, controller, roles) {
   })(obj);
 
   obj.controller = (function (that) {
-    return function () {
-      console.log(that.getOriginal().controller);
-      return that.getOriginal().controller;
-    }
-
+    return ["$scope", "$controller", "$route", function ($scope, $controller, $route) {
+      var current = $route.current, locals = current.locals;
+      current.controller = that.getOriginal().controller;
+      if (current.controller) {
+        locals.$scope = $scope;
+        $controller(current.controller, locals);
+      }
+    }];
   })(obj);
 
   return obj;
