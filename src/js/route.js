@@ -8,6 +8,7 @@ app.config(["$routeProvider", "$locationProvider", function ($routeProvider, $lo
   $routeProvider.when("/access-denied", Route.getFromRoutesList("access-denied") );
   $routeProvider.when("/error-404",     Route.getFromRoutesList("error-404") );
   $routeProvider.when("/sign-up",       Route.ng("sign-up.html" , "LoginController", ["Guest"]) );
+  $routeProvider.otherwise(Route.getFromRoutesList("error-404"));
 
 }]);
 
