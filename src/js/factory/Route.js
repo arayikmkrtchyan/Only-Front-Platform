@@ -16,9 +16,6 @@ Route.ng = function (template, controller, roles) {
           obj = Route.getFromRoutesList("access-denied");
         }
       }
-      //if (!$route.current) {
-      //  obj = Route.getFromRoutesList("error-404");
-      // }
       if (obj && obj.original) {
         return obj.original;
       }
