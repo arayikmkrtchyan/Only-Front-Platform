@@ -1,19 +1,20 @@
 'use strict';
 
-function RootController($rootScope, UserService) {
+RootController.$inject = ['$rootScope', 'UserService', '$route'];
+function RootController($rootScope, UserService, $route) {
   $rootScope.completed = false;
   $rootScope.title = "";
   $rootScope.userData = null;
 
   UserService.subscribe('get-user-data.success', function(data){
     $rootScope.userData = data;
-    $rootScope.completed = true;
     Route.role = data.role;
+    $route.reload();
+    $rootScope.completed = true;
   });
 
   UserService.getUserData();
 }
 
 // register controller
-RootController.$inject = ['$rootScope', 'UserService'];
 app.controller('RootController', RootController);
