@@ -11,6 +11,9 @@ function DemoController3($scope, $rootScope) {
   alert(3);
   $rootScope.title = "Hello, World!";
   $scope.demoText = "Hello, World!";
+  $scope.xz = function() {
+    $scope.demoText = "zźźźźźźź";
+  }
 
 }
 
