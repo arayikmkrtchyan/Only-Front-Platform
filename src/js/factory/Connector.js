@@ -13,24 +13,32 @@ Connector.prototype.req = {
 
 Connector.prototype.serviceName = "";
 
+Connector.prototype.subscribeOnSuccess = function (event, callback) {
+  this.subscribe(event + ".success", callback);
+};
+
+Connector.prototype.subscribeOnFail = function (event, callback) {
+  this.subscribe(event + ".fail", callback);
+};
+
 Connector.prototype.send = function (request) {
-  var name, params, promise;
+  var eventName, params, promise;
   params = angular.merge(angular.copy(this.req), request);
-  name = params.url;
-  params.url = "rest/" + this.serviceName + "/" + name + ".json";
+  eventName = params.eventName || params.url;
+  params.url = "rest/" + this.serviceName + "/" + params.url + ".json";
 
   promise = this.$http(params);
 
   (function (promise, that) {
     promise.then(
       function (response) {
-        that.publish(name, {type: "success", data: response.data, response: response});
-        that.publish(name + ".success", response.data);
+        that.publish(eventName, {type: "success", data: response.data, response: response});
+        that.publish(eventName+ ".success", response.data);
       },
 
       function (error) {
-        that.publish(name, {type: "fail", error: error});
-        that.publish(name + ".fail", error);
+        that.publish(eventName, {type: "fail", error: error});
+        that.publish(eventName + ".fail", error);
       }
     );
   }(promise, this));

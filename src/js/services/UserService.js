@@ -1,5 +1,10 @@
 'use strict';
 
+UserService.event = {
+  getUserData : "get-user-data"
+};
+
+UserService.$inject = ['$http'];
 function UserService($http) {
 
   this.$http = $http;
@@ -7,6 +12,7 @@ function UserService($http) {
 
   this.getUserData = function () {
     return this.send({
+      eventName: UserService.event.getUserData,
       method: 'GET',
       url: 'get-user-data'
     });
@@ -21,7 +27,6 @@ function UserService($http) {
 }
 
 // extends and register service
-UserService.$inject = ['$http'];
 UserService.prototype = Object.create(Connector.prototype);
 UserService.prototype.constructor = UserService;
 app.service('UserService', UserService);
