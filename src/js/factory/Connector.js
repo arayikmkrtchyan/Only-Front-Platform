@@ -13,11 +13,11 @@ Connector.prototype.req = {
 
 Connector.prototype.serviceName = "";
 
-Connector.prototype.subscribeOnSuccess = function (event, callback) {
+Connector.prototype.subscribeToSuccess = function (event, callback) {
   this.subscribe(event + ".success", callback);
 };
 
-Connector.prototype.subscribeOnFail = function (event, callback) {
+Connector.prototype.subscribeToFail = function (event, callback) {
   this.subscribe(event + ".fail", callback);
 };
 

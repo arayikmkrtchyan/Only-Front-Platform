@@ -6,7 +6,7 @@ function RootController($rootScope, UserService, $route) {
   $rootScope.title = "";
   $rootScope.userData = null;
 
-  UserService.subscribeOnSuccess(UserService.event.getUserData, function(data){
+  UserService.subscribeToSuccess(UserService.event.getUserData, function(data){
     $rootScope.userData = data;
     Route.role = data.role;
     $route.reload();
