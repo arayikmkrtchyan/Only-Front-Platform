@@ -22,3 +22,5 @@ PubSub.prototype = {
   }
 
 };
+
+PubSub.event = {};
